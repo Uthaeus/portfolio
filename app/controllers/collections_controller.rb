@@ -40,4 +40,13 @@ class CollectionsController < ApplicationController
     @collection_item = Collection.find(params[:id])
   end
 
+  def destroy
+    @collection_item = Collection.find(params[:id])
+
+    @collection_item.destroy
+    respond_to do |format|
+      format.html { redirect_to collections_url, notice: 'Item was successfully removed.' }
+    end
+  end
+
 end
