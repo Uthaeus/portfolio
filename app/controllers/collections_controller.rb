@@ -20,4 +20,20 @@ class CollectionsController < ApplicationController
     end
   end
 
+  def edit
+    @collection_item = Collection.find(params[:id])
+  end
+
+  def update
+    @collection_item = Collection.find(params[:id])
+
+    respond_to do |format|
+      if @collection_item.update(params.require(:collection).permit(:title, :subtitle, :body))
+        format.html { redirect_to collections_path, notice: 'Collection Item was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+
 end
