@@ -3,7 +3,7 @@
 <%= link_to "Create new item", new_collection_path %>
 
 <% @collection_items.each do |collection_item| %>
-  <p><%= link_to collection_item.title, collection_path(collection_item) %></p>
+  <p><%= link_to collection_item.title, collection_show_path(collection_item) %></p>
   <p><%= collection_item.subtitle %></p>
   <p><%= collection_item.body %></p>
   <%= image_tag collection_item.thumb_image unless collection_item.thumb_image.nil? %>

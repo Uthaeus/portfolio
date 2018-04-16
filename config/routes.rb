@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :collections
+  resources :collections, except: [:show]
+
+  get 'collection/:id', to: 'collections#show', as: 'collection_show'
 
   get 'about', to: 'pages#about'
 
