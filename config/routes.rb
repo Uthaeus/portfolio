@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
-  resources :collections
-  get 'pages/home'
+  resources :collections, except: [:show]
 
-  get 'pages/about'
+  get 'collection/:id', to: 'collections#show', as: 'collection_show'
 
-  get 'pages/contact'
+  get 'about', to: 'pages#about'
 
-  resources :blogs
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'contact', to: 'pages#contact'
+
+  resources :blogs do 
+    member do 
+      get :toggle_status
+    end
+  end
+
+  root to: 'pages#home'
 end
