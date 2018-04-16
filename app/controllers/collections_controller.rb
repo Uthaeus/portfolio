@@ -36,4 +36,8 @@ class CollectionsController < ApplicationController
     end
   end
 
+  def show
+    @collection_item = Collection.find(params[:id])
+  end
+
 end
