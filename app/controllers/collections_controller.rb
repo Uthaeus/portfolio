@@ -4,6 +4,10 @@ class CollectionsController < ApplicationController
     @collection_items = Collection.all 
   end
 
+  def angular
+    @angular_collection_items = Collection.angular
+  end
+
   def new
     @collection_item = Collection.new
   end
