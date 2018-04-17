@@ -14,7 +14,7 @@ class CollectionsController < ApplicationController
   end
 
   def create
-    @collection_item = Collection.new(params.require(:collection).permit(:title, :subtitle, :body, technologies_attributes: [:name]))
+    @collection_item = Collection.new(collection_params)
 
     respond_to do |format|
       if @collection_item.save
@@ -33,7 +33,7 @@ class CollectionsController < ApplicationController
     @collection_item = Collection.find(params[:id])
 
     respond_to do |format|
-      if @collection_item.update(params.require(:collection).permit(:title, :subtitle, :body))
+      if @collection_item.update(collection_params)
         format.html { redirect_to collections_path, notice: 'Collection Item was successfully updated.' }
       else
         format.html { render :edit }
@@ -53,5 +53,17 @@ class CollectionsController < ApplicationController
       format.html { redirect_to collections_url, notice: 'Item was successfully removed.' }
     end
   end
+
+  private
+
+    def collection_params
+      params.require(:collection).permit(:title, 
+                                        :subtitle, 
+                                        :body, 
+                                        technologies_attributes: [:name]
+                                        )
+    end
+
+
 
 end
