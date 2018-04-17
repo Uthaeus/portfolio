@@ -6,3 +6,9 @@
 
 <p><%= @collection_item.body %></p>
 
+<h2>Technologies Used</h2>
+
+<% @collection_item.technologies.each do |t| %>
+  <p><%= t.name %></p>
+<% end %>
+

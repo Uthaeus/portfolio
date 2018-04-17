@@ -10,10 +10,11 @@ class CollectionsController < ApplicationController
 
   def new
     @collection_item = Collection.new
+    3.times { @collection_item.technologies.build }
   end
 
   def create
-    @collection_item = Collection.new(params.require(:collection).permit(:title, :subtitle, :body))
+    @collection_item = Collection.new(params.require(:collection).permit(:title, :subtitle, :body, technologies_attributes: [:name]))
 
     respond_to do |format|
       if @collection_item.save
